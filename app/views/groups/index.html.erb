@@ -1,0 +1,30 @@
+<div class="col-md-12">
+	<h2>Rails103</h2>
+	<div id="new">
+		<%= link_to("新建版块",new_group_path,class:"btn btn-primary") %>
+	</div>
+  <table class="table table-hover">
+	<thead>
+		<tr>
+		  <td>版块标题</td>
+		  <td>版块描述</td>
+		  <td>创建人</td>
+		  <td>操作</td>
+		</tr>
+	</thead>
+	<tbody>
+		<% @groups.each do |g| %>
+		<tr>
+		  <td><%= link_to(g.title,group_path(g)) %></td>	
+		  <td><%= g.description %></td>
+		   <!-- 下面的g.user指当前版块所属的user对象(group model中声明了belongs_to user了) -->
+		  <td><%= g.user.email %></td>
+		  <% if current_user && g.user==current_user %>	
+		  <td><%= link_to("编辑",edit_group_path(g)) %></td>	
+		  <td><%= link_to("删除",group_path(g),method: :delete,data:{confirm:"确定删除？"}) %></td>	
+		  <%end %>
+		</tr>
+		<%end  %>
+	</tbody>	
+  </table>
+</div>

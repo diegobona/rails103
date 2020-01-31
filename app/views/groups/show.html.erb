@@ -1,0 +1,17 @@
+<div class="col-md-12">
+  <h2>版块详情</h2>
+  <hr>
+  
+  <div class="group">
+    <h3><%= @group.title %></h3>
+    <p><%= @group.description %></p>
+  </div>
+  
+  <div class="">
+    <% if current_user && current_user==@group.user %>
+    <%= link_to("编辑",edit_group_path(@group),class:"btn btn-primary") %>
+    <%end %>
+    <%= link_to("返回",groups_path,class:"btn btn-default") %>
+  </div>
+	
+</div>
