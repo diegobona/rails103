@@ -1,0 +1,26 @@
+<h2>我发布的主题</h2>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th scope="col">主题内容</th>
+			<th scope="col">所属版块</th>
+			<th scope="col">发布时间</th>
+			<th scope="col">操作</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @myPosts.each do |p| %> 
+		<tr>
+			<td><%=p.content  %></td>
+			<!-- <td><%=Group.find(p.group_id).title  %></td> -->
+			<td><%=p.group.title  %></td>
+			<td><%=p.created_at %></td>
+			<td>
+				<%= link_to("编辑",edit_group_post_path(p.group,p)) %>
+				<%= link_to("删除", group_post_path(p.group,p),method: :delete,data:{confirm:"你确定吗？"}) %>
+				
+			</td>
+		</tr>
+		<%end %>
+	</tbody>
+</table>
